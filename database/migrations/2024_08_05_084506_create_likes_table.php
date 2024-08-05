@@ -19,14 +19,16 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        DB::statement('
-            ALTER TABLE likes
-            ADD CONSTRAINT check_common_post_id_or_dajare_post_id_null
-            CHECK (
-                (common_post_id IS NULL AND dajare_post_id IS NOT NULL) OR
-                (common_post_id IS NOT NULL AND dajare_post_id IS NULL)
-            )
-        ');
+        Schema::table('dajare_posts' , function (Blueprint $table) {
+            DB::statement('
+                ALTER TABLE likes
+                ADD CONSTRAINT check_common_post_id_or_dajare_post_id_null
+                CHECK (
+                    (common_post_id IS NULL AND dajare_post_id IS NOT NULL) OR
+                    (common_post_id IS NOT NULL AND dajare_post_id IS NULL)
+                )
+            ');
+        });
     }
 
     /**
@@ -34,11 +36,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        DB::statement('
-            ALTER TABLE likes
-            DROP CONSTRAINT check_common_post_id_or_dajare_post_id_null
-        ');
-
         Schema::dropIfExists('likes');
     }
 };

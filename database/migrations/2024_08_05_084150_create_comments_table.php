@@ -21,15 +21,17 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        DB::statement('ALTER TABLE comments ADD CONSTRAINT chk_text_or_image CHECK (text IS NOT NULL OR image IS NOT NULL)');
-        DB::statement('
-            ALTER TABLE comments
-            ADD CONSTRAINT check_common_post_id_or_dajare_post_id_null
-            CHECK (
-                (common_post_id IS NULL AND dajare_post_id IS NOT NULL) OR
-                (common_post_id IS NOT NULL AND dajare_post_id IS NULL)
-            )
-        ');
+        Schema::table('comments' , function (Blueprint $table) {
+            DB::statement('ALTER TABLE comments ADD CONSTRAINT chk_text_or_image CHECK (text IS NOT NULL OR image IS NOT NULL)');
+            DB::statement('
+                ALTER TABLE comments
+                ADD CONSTRAINT check_common_post_id_or_dajare_post_id_null
+                CHECK (
+                    (common_post_id IS NULL AND dajare_post_id IS NOT NULL) OR
+                    (common_post_id IS NOT NULL AND dajare_post_id IS NULL)
+                )
+            ');
+        });
     }
 
 
@@ -39,20 +41,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('comments', function (Blueprint $table) {
-            // カスタムチェック制約を削除
-            if (Schema::hasColumn('comments', 'chk_text_or_image')) {
-                $table->dropConstrainedForeignId('chk_text_or_image');
-            }
-            if (Schema::hasColumn('comments', 'check_common_post_id_or_dajare_post_id_null')) {
-                $table->dropForeign('comments_chk_text_or_image_foreign');
-            }
-        });
-        DB::statement('
-        ALTER TABLE likes
-        DROP CONSTRAINT check_common_post_id_or_dajare_post_id_null
-    ');
-
         Schema::dropIfExists('comments');
     }
 };

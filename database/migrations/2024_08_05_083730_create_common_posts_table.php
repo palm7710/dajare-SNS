@@ -20,7 +20,9 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        DB::statement('ALTER TABLE common_posts ADD CONSTRAINT chk_text_or_image CHECK (text IS NOT NULL OR image IS NOT NULL)');
+        Schema::table('common_posts' , function (Blueprint $table) {
+            DB::statement('ALTER TABLE common_posts ADD CONSTRAINT chk_text_or_image CHECK (text IS NOT NULL OR image IS NOT NULL)');
+        });
     }
 
     /**
@@ -28,12 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('common_posts', function (Blueprint $table) {
-            // カスタムチェック制約を削除
-            if (Schema::hasColumn('common_posts', 'chk_text_or_image')) {
-                $table->dropConstrainedForeignId('chk_text_or_image');
-            }
-        });
         Schema::dropIfExists('common_posts');
     }
 };
