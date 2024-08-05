@@ -19,10 +19,10 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        Schema::table('dajare_posts' , function (Blueprint $table) {
+        Schema::table('likes' , function (Blueprint $table) {
             DB::statement('
                 ALTER TABLE likes
-                ADD CONSTRAINT check_common_post_id_or_dajare_post_id_null
+                ADD CONSTRAINT chk_common_post_id_or_dajare_post_id_null
                 CHECK (
                     (common_post_id IS NULL AND dajare_post_id IS NOT NULL) OR
                     (common_post_id IS NOT NULL AND dajare_post_id IS NULL)

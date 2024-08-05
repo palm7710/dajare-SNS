@@ -25,7 +25,7 @@ return new class extends Migration
             DB::statement('ALTER TABLE comments ADD CONSTRAINT chk_text_or_image CHECK (text IS NOT NULL OR image IS NOT NULL)');
             DB::statement('
                 ALTER TABLE comments
-                ADD CONSTRAINT check_common_post_id_or_dajare_post_id_null
+                ADD CONSTRAINT chk_common_post_id_or_dajare_post_id_null
                 CHECK (
                     (common_post_id IS NULL AND dajare_post_id IS NOT NULL) OR
                     (common_post_id IS NOT NULL AND dajare_post_id IS NULL)
