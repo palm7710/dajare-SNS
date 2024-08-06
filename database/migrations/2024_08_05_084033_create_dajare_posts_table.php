@@ -21,10 +21,9 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        Schema::table('dajare_posts' , function (Blueprint $table) {
+        Schema::table('dajare_posts', function (Blueprint $table) {
             DB::statement('ALTER TABLE dajare_posts ADD CONSTRAINT chk_text_or_image CHECK (text IS NOT NULL OR image IS NOT NULL)');
         });
-
     }
 
     /**

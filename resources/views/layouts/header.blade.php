@@ -6,13 +6,11 @@
             <div class="text-deep-purple text-6xl">
                 <i class="fas fa-user-circle"></i>
             </div>
-            @else
-            <div class="w-6"></div>
             @endauth
 
             <!-- 中央ロゴ -->
             <div class="flex justify-center items-center flex-grow">
-                <a href="/" class="text-deep-purple text-3xl font-bold">Dajare SNS</a>
+                <img src="{{ asset('images/jokey_logo.png')}}" class="max-w-xs">
             </div>
 
             <!-- 右側アイコン（ログインした時だけ表示） -->
@@ -20,8 +18,6 @@
             <div class="text-deep-purple text-6xl">
                 <i class="far fa-plus-square"></i>
             </div>
-            @else
-            <div class="w-6"></div>
             @endauth
         </div>
     </div>
