@@ -104,10 +104,11 @@
                                         <i class="fas fa-comment-alt"></i>
                                         <span class="ml-1 text-black font-light">0</span>
                                     </a>
-                                    @method('DELETE')
+                                    @auth
                                     <button type="submit" class="text-custom-gray hover:text-deep-gray hover-fade">
                                         <i class="fas fa-trash-alt"></i>
                                     </button>
+                                    @endauth
                                 </div>
                             </div>
                         </div>
