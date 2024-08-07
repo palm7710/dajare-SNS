@@ -1,0 +1,6 @@
+.hover-fade {
+    transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+.hover-fade:hover {
+    transform: scale(1.1);
+}
