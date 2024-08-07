@@ -3,27 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 
-class DajarePost extends Model
+class DajarePost extends CommonPost
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'text', 'image'];
+    protected $table = 'dajare_posts';
 
-    public static function createDajarePost($data)
-    {
-        return self::create($data);
-    }
-
-    public function updateDajarePost($data)
-    {
-        return $this->update($data);
-    }
-
-    public static function deleteDajarePost($id)
-    {
-        $dajare_post = self::find($id);
-        return $dajare_post ? $dajare_post->delete() : false;
-    }
+    protected $fillable = ['user_id', 'text', 'image', 'impression', 'dajare_score'];
 }
