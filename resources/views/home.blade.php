@@ -14,8 +14,11 @@
             </button>
         </div>
 
+        <!-- ダイアログのオーバーレイ -->
+        <div id="modalOverlay" class="modal-overlay"></div>
+
         <!-- 投稿の作成フォーム -->
-        <div class="flex justify-center mb-8">
+        <div id="modal" class="modal flex justify-center mb-8 hidden">
             <div class="w-[500px] p-4 rounded border border-deep-purple shadow-lg">
                 <h2 class="text-center text-deep-purple text-2xl mb-4">投稿</h2>
                 <form action="{{ url('common_post') }}" method="POST">
@@ -28,8 +31,8 @@
                         <i class="fas fa-image"></i>
                     </div>
                     <div class="flex justify-center m-8">
-                        <button type="submit" class="w-24 bg-deep-purple text-white py-2 mr-32 rounded hover-fade">投稿する</button>
-                        <button type="submit" class="w-24 border border-deep-purple text-deep-purple py-2 rounded hover-fade">キャンセル</button>
+                        <button type="submit" class="w-24 bg-deep-purple text-white py-2 mr-32 rounded hover:bg-deep-purple-dark hover-fade">投稿する</button>
+                        <button type="button" id="closeModalBtn" class="w-24 border border-deep-purple text-deep-purple py-2 rounded hover:bg-deep-purple-light hover-fade">キャンセル</button>
                     </div>
                 </form>
             </div>
@@ -104,11 +107,10 @@
                                         <i class="fas fa-comment-alt"></i>
                                         <span class="ml-1 text-black font-light">0</span>
                                     </a>
-                                    @auth
+                                    @method('DELETE')
                                     <button type="submit" class="text-custom-gray hover:text-deep-gray hover-fade">
                                         <i class="fas fa-trash-alt"></i>
                                     </button>
-                                    @endauth
                                 </div>
                             </div>
                         </div>

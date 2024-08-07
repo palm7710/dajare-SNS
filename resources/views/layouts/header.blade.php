@@ -10,12 +10,14 @@
 
             <!-- 中央ロゴ -->
             <div class="flex justify-center items-center flex-grow">
-                <img src="{{ asset('images/jokey_logo.png')}}" class="max-w-xs">
+                <a href="{{ url('/') }}">
+                    <img src="{{ asset('images/jokey_logo.png') }}" class="max-w-xs" alt="Logo">
+                </a>
             </div>
 
             <!-- 右側アイコン（ログインした時だけ表示） -->
             @auth
-            <div class="text-deep-purple text-6xl">
+            <div id="openModalBtn" class="text-deep-purple text-6xl">
                 <i class="far fa-plus-square"></i>
             </div>
             @endauth
