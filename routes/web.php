@@ -2,12 +2,17 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CommonPostController;
 use App\Http\Controllers\DajarePostController;
 
 //ホーム画面のルート
 Route::get('/', [HomeController::class, 'index']);
+
+// ユーザーに対応するルート
+Route::get('/users', [UserController::class, 'index']);
+Route::get('/users/{id}', [UserController::class, 'show']);
 
 // 各投稿タイプに対応するルート
 Route::get('/posts', [PostController::class, 'index'])->name('posts.index');

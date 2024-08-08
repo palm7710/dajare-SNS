@@ -16,11 +16,11 @@
             </div>
 
             <!-- 右側アイコン（ログインした時だけ表示） -->
-            @auth
+
             <div id="openModalBtn" class="text-deep-purple text-6xl">
                 <i class="far fa-plus-square"></i>
             </div>
-            @endauth
+
         </div>
     </div>
 </header>

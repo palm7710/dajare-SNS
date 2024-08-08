@@ -11,4 +11,10 @@ class DajarePost extends CommonPost
     protected $table = 'dajare_posts';
 
     protected $fillable = ['user_id', 'text', 'image', 'impression', 'dajare_score'];
+
+    // ユーザーとのリレーション
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }
