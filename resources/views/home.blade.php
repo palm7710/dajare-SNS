@@ -6,10 +6,10 @@
 <div>
     <div class="container mx-auto py-8">
         <div class="flex justify-center mb-4">
-            <button class="toggle-section border border-deep-purple bg-deep-purple text-white w-[250px] px-4 py-2 mr-8 rounded-full hover:bg-white hover:text-deep-purple hover-fade" data-section="dajare">
+            <button class="toggle-section border border-deep-purple text-deep-purple w-[250px] px-4 py-2 rounded-full mr-8 hover-fade" data-section="dajare">
                 ダジャレ
             </button>
-            <button class="toggle-section border border-deep-purple text-deep-purple w-[250px] px-4 py-2 rounded-full hover:bg-deep-purple hover:text-white hover-fade" data-section="common">
+            <button class="toggle-section border border-deep-purple text-deep-purple w-[250px] px-4 py-2 rounded-full hover-fade" data-section="common">
                 投稿一覧
             </button>
         </div>

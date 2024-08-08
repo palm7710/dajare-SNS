@@ -13,16 +13,32 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    function activateButton(button) {
+        // すべてのボタンからアクティブスタイルを削除
+        document.querySelectorAll('.toggle-section').forEach(btn => {
+            btn.classList.remove('bg-deep-purple', 'text-white');
+            btn.classList.add('border', 'border-deep-purple', 'text-deep-purple');
+        });
+
+        // クリックされたボタンにアクティブスタイルを追加
+        button.classList.add('bg-deep-purple', 'text-white');
+        button.classList.remove('border', 'text-deep-purple');
+    }
+
     // デフォルトでダジャレの投稿を表示
     showSection('dajare');
+    activateButton(document.querySelector('[data-section="dajare"]')); // デフォルトのボタンをアクティブにする
 
     // ボタンにクリックイベントを追加
     document.querySelectorAll('.toggle-section').forEach(button => {
         button.addEventListener('click', function() {
             showSection(this.dataset.section);
+            activateButton(this);
         });
     });
 });
+
+
 
 // ダイアログの表示
 // 要素の取得
