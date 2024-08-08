@@ -32,11 +32,13 @@
             <div class="border-b pb-4">
                 <div class="flex items-start">
                     <!-- プロフィール画像 -->
-                    <div class="w-12 h-12 rounded-full bg-custom-gray mr-4"></div>
+                    <div class="w-14 h-14 rounded-full mr-4">
+                        <img src="{{ asset('images/' . $post->user->profile_image) }}" alt="Profile Image">
+                    </div>
                     <div class="flex-1">
                         <div class="text-sm">
-                            <span class="text-black font-bold">ユーザ名</span>
-                            <span class="text-deep-gray">@user_ID</span>
+                            <span class="text-black font-bold">{{ $post->user->user_name }}</span>
+                            <span class="text-deep-gray">@ {{ $post->user->user_id }}</span>
                         </div>
                         <div class="text-lg text-black">{{ $post->text }}</div>
                         <div class="flex items-center mt-2 justify-end">
