@@ -17,7 +17,7 @@ class UsersTableSeeder extends Seeder
             [
                 'id' => 1,
                 'user_id' => 'tarou_00',
-                'mail_address' => 'tarou@example.com',
+                'mail' => 'tarou@example.com',
                 'password' => Hash::make('password123'),
                 'user_name' => 'Tarou',
                 'profile_image' => 'user1.jpg',
