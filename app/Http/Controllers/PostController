@@ -8,15 +8,6 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-    public function index()
-    {
-        // 投稿のページネーションを設定
-        $posts = Post::paginate(6); // 通常の投稿
-        $dajarePosts = DajarePost::paginate(6); // ダジャレ投稿
-
-        return view('posts.index', compact('posts', 'dajarePosts'));
-    }
-
     public function create()
     {
         return view('posts.create');
