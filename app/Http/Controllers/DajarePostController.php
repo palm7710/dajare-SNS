@@ -8,14 +8,6 @@ use App\Models\User;
 
 class DajarePostController extends Controller
 {
-    public function index()
-    {
-        $dajarePosts = DajarePost::paginate(6); // 6件ずつのページネーション
-
-        // ビューにデータを渡す
-        return view('home', compact('dajarePosts'));
-    }
-
     public function show($id)
     {
         // 特定の投稿を取得
