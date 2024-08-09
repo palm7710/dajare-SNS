@@ -7,6 +7,7 @@ use App\Models\CommonPost;
 
 class CommonPostController extends Controller
 {
+
     public function show($id)
     {
         // 特定の投稿を取得

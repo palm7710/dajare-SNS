@@ -14,33 +14,9 @@
             </button>
         </div>
 
-        <!-- ダイアログのオーバーレイ -->
-        <div id="modalOverlay" class="modal-overlay"></div>
-
-        <!-- 投稿の作成フォーム -->
-        <div id="modal" class="modal flex justify-center mb-8 hidden">
-            <div class="w-[500px] p-4 rounded border border-deep-purple shadow-lg">
-                <h2 class="text-center text-deep-purple text-2xl mb-4">投稿</h2>
-                <form action="{{ url('common_post') }}" method="POST">
-                    @csrf
-                    <input type="hidden" name="user_id" value="1">
-                    <div class="flex mb-4 justify-center">
-                        <textarea id="text" name="text" class="mt-1 block border border-deep-purple rounded h-32 w-[85%]" required placeholder="投稿内容を入力してください"></textarea>
-                    </div>
-                    <div class="flex ml-10 text-3xl text-deep-gray">
-                        <i class="fas fa-image"></i>
-                    </div>
-                    <div class="flex justify-center m-8">
-                        <button type="submit" class="w-24 bg-deep-purple text-white py-2 mr-32 rounded hover:bg-deep-purple-dark hover-fade">投稿する</button>
-                        <button type="button" id="closeModalBtn" class="w-24 border border-deep-purple text-deep-purple py-2 rounded hover:bg-deep-purple-light hover-fade">キャンセル</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-
         <!-- ダジャレ投稿一覧の表示 -->
         @if(isset($dajarePosts) && $dajarePosts->isNotEmpty())
-        <div id="dajare-posts" class="flex justify-center hidden">
+        <div id="dajare-posts" class="flex justify-center">
             <div class="w-[500px] p-4 rounded">
                 <ul class="space-y-4">
                     @foreach ($dajarePosts as $post)
@@ -49,12 +25,17 @@
                             <div class="flex items-start">
                                 <!-- プロフィール画像 -->
                                 <div class="w-14 h-14 rounded-full mr-4">
-                                    <img src="{{ asset('images/' . $post->user->profile_image) }}" alt="Profile Image">
+                                    <img src="{{ asset('storage/' . $post->user->profile_image) }}" alt="Profile Image">
                                 </div>
                                 <div class="flex-1">
-                                    <div class="text-sm">
-                                        <span class="text-black font-bold">{{ $post->user->user_name }}</span>
-                                        <span class="text-deep-gray">@ {{ $post->user->user_id }}</span>
+                                    <div class="text-sm flex items-center justify-between">
+                                        <div>
+                                            <span class="text-black font-bold">{{ $post->user->user_name }}</span>
+                                            <span class="text-deep-gray">@ {{ $post->user->user_id }}</span>
+                                        </div>
+                                        <span class="text-deep-gray">
+                                            {{ $post->updated_at->diffForHumans() }}
+                                        </span>
                                     </div>
                                     <div class="text-lg text-black">{{ $post->text }}</div>
                                     <div class="flex items-center mt-2 justify-end">
@@ -70,9 +51,13 @@
                                             <span class="ml-1 text-black font-light">0</span>
                                         </a>
                                         @auth
-                                        <button type="submit" class="text-custom-gray hover:text-deep-gray hover-fade">
-                                            <i class="fas fa-trash-alt"></i>
-                                        </button>
+                                        <form action="{{ url('dajare_post/' . $post->id) }}" method="POST" style="display:inline;">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="text-custom-gray hover:text-deep-gray hover-fade">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </button>
+                                        </form>
                                         @endauth
                                     </div>
                                 </div>
@@ -81,6 +66,12 @@
                     </a>
                     @endforeach
                 </ul>
+
+                <!-- ダジャレ投稿のページネーション -->
+                <div class="flex justify-center m-8">
+                    {{ $dajarePosts->appends(['section' => 'dajare'])->links('vendor.pagination.bootstrap-4') }}
+
+                </div>
             </div>
         </div>
         @else
@@ -88,22 +79,27 @@
         @endif
 
         <!-- 普通の投稿一覧の表示 -->
-        @if(isset($posts) && $posts->isNotEmpty())
-        <div id="common-posts" class="flex justify-center hidden">
+        @if(isset($commonPosts) && $commonPosts->isNotEmpty())
+        <div id="common-posts" class="flex justify-center">
             <div class="w-[500px] p-4 rounded">
                 <ul class="space-y-4">
-                    @foreach ($posts as $post)
+                    @foreach ($commonPosts as $post)
                     <a href="{{ route('common_post.show', $post->id) }}">
                         <li class="border-b pb-4">
                             <div class="flex items-start">
                                 <!-- プロフィール画像 -->
                                 <div class="w-14 h-14 rounded-full mr-4">
-                                    <img src="{{ asset('images/' . $post->user->profile_image) }}" alt="Profile Image">
+                                    <img src="{{ asset('storage/' . $post->user->profile_image) }}" alt="Profile Image">
                                 </div>
                                 <div class="flex-1">
-                                    <div class="text-sm">
-                                        <span class="text-black font-bold">{{ $post->user->user_name }}</span>
-                                        <span class="text-deep-gray">@ {{ $post->user->user_id }}</span>
+                                    <div class="text-sm flex items-center justify-between">
+                                        <div>
+                                            <span class="text-black font-bold">{{ $post->user->user_name }}</span>
+                                            <span class="text-deep-gray">@ {{ $post->user->user_id }}</span>
+                                        </div>
+                                        <span class="text-deep-gray">
+                                            {{ $post->updated_at->diffForHumans() }}
+                                        </span>
                                     </div>
                                     <div class="text-lg text-black">{{ $post->text }}</div>
                                     <div class="flex items-center mt-2 justify-end">
@@ -120,9 +116,13 @@
                                             <span class="ml-1 text-black font-light">0</span>
                                         </a>
                                         @auth
-                                        <button type="submit" class="text-custom-gray hover:text-deep-gray hover-fade">
-                                            <i class="fas fa-trash-alt"></i>
-                                        </button>
+                                        <form action="{{ url('common_post/' . $post->id) }}" method="POST" style="display:inline;">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="text-custom-gray hover:text-deep-gray hover-fade">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </button>
+                                        </form>
                                         @endauth
                                     </div>
                                 </div>
@@ -131,24 +131,16 @@
                     </a>
                     @endforeach
                 </ul>
+
+                <!-- 普通の投稿のページネーション -->
+                <div class="flex justify-center m-8">
+                    {{ $commonPosts->appends(['section' => 'common'])->links('vendor.pagination.bootstrap-4') }}
+                </div>
             </div>
         </div>
         @else
         <p>普通の投稿はまだありません。</p>
         @endif
-
-        <!-- ページネーション -->
-        <div class="flex justify-center m-8">
-            <div class="flex space-x-10">
-                <button class="border border-deep-purple text-deep-purple w-10 h-10 rounded-full hover:bg-deep-purple hover:text-white hover-fade">&lt;</button>
-                <button class="text-deep-purple font-light w-10 h-10 rounded-full hover:bg-light-purple hover:text-white hover-fade">1</button>
-                <button class="text-deep-purple font-light w-10 h-10 rounded-full hover:bg-light-purple hover:text-white hover-fade">2</button>
-                <button class="text-deep-purple font-light w-10 h-10 rounded-full hover:bg-light-purple hover:text-white hover-fade">3</button>
-                <button class="text-deep-purple font-light w-10 h-10 rounded-full hover:bg-light-purple hover:text-white hover-fade">4</button>
-                <button class="text-deep-purple font-light w-10 h-10 rounded-full hover:bg-light-purple hover:text-white hover-fade">5</button>
-                <button class="border border-deep-purple text-deep-purple w-10 h-10 rounded-full hover:bg-deep-purple hover:text-white hover-fade">&gt;</button>
-            </div>
-        </div>
     </div>
 </div>
 @endsection
