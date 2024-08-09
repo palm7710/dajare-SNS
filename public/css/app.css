@@ -26,3 +26,8 @@
     background: rgba(199, 199, 199, 0.5);
     z-index: 999;
 }
+#preview img {
+    width: 200px;
+    margin: 10px;
+    border: solid 1px silver;
+}

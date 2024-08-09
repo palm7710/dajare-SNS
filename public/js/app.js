@@ -85,3 +85,53 @@ profileModalOverlay.addEventListener('click', () => {
     profileModal.style.display = 'none';
     profileModalOverlay.style.display = 'none';
 });
+
+// プレビュー画像の表示
+function previewFile(file) {
+    const preview = document.getElementById('preview');
+    const imageIcon = document.getElementById('image-icon');
+
+    // FileReaderオブジェクトを作成
+    const reader = new FileReader();
+
+    // ファイルが読み込まれたときに実行する
+    reader.onload = function (e) {
+        const imageUrl = e.target.result;
+        const imgContainer = document.createElement("div");
+        imgContainer.classList.add("relative", "inline-block");
+
+        const img = document.createElement("img");
+        img.src = imageUrl;
+        img.classList.add("w-full", "h-auto", "rounded");
+
+        const removeButton = document.createElement("button");
+        removeButton.innerHTML = "&times;";
+        removeButton.classList.add("absolute", "top-0", "right-0", "text-white", "bg-red-500", "rounded-full", "w-6", "h-6", "flex", "items-center", "justify-center", "cursor-pointer");
+
+        // 削除ボタンがクリックされたとき
+        removeButton.onclick = function() {
+            preview.innerHTML = '';
+            imageIcon.classList.remove("hidden");
+            fileInput.value = '';
+        };
+
+        imgContainer.appendChild(img);
+        imgContainer.appendChild(removeButton);
+        preview.appendChild(imgContainer);
+
+        imageIcon.classList.add("hidden"); 
+    }
+
+    // ファイルを読み込む
+    reader.readAsDataURL(file);
+}
+
+// <input>でファイルが選択されたときの処理
+const fileInput = document.getElementById('image-upload');
+const handleFileSelect = () => {
+    const files = fileInput.files;
+    for (let i = 0; i < files.length; i++) {
+        previewFile(files[i]);
+    }
+}
+fileInput.addEventListener('change', handleFileSelect);

@@ -13,7 +13,7 @@
                 <div class="flex items-start">
                     <!-- プロフィール画像 -->
                     <div class="w-14 h-14 rounded-full mr-4">
-                        <img src="{{ asset('storage/' . $post->user->profile_image) }}" alt="Profile Image">
+                        <img src="{{ asset('storage/profile/' . $post->user->profile_image) }}" alt="Profile Image">
                     </div>
                     <div class="flex-1">
                         <div class="text-sm flex items-center justify-between">
@@ -26,6 +26,12 @@
                             </span>
                         </div>
                         <div class="text-lg text-black">{{ $post->text }}</div>
+                        @if($post->image)
+                        <div class="relative w-full mt-4" style="padding-bottom: 50%;">
+                            <img src="{{ url('storage/post/' . basename($post->image)) }}" alt="投稿画像" class="absolute top-0 left-0 w-full h-full object-cover">
+                        </div>
+                        @endif
+
                         <div class="flex items-center mt-2 justify-end">
                             <form action="{{ url('common_post/' . $post->id) }}" method="POST" style="display:inline;">
                                 @csrf
@@ -40,13 +46,15 @@
                                 <span class="ml-1 text-black font-light">0</span>
                             </a>
                             @auth
-                            <form action="{{ url('common_post/' . $post->id) }}" method="POST" style="display:inline;">
+                            @if (Auth::user()->id === $post->user_id)
+                            <form action="{{ url('dajare_post/' . $post->id) }}" method="POST" style="display:inline;">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="text-custom-gray hover:text-deep-gray hover-fade">
                                     <i class="fas fa-trash-alt"></i>
                                 </button>
                             </form>
+                            @endif
                             @endauth
                         </div>
                     </div>

@@ -6,13 +6,13 @@
                 <i class="fas fa-user-circle cursor-pointer"></i>
             </div>
 
-            <!-- ダイアログ -->
+            <!-- メニューのダイアログ -->
             <div id="profileModalOverlay" class="modal-overlay hidden"></div>
 
             <div id="profileModal" class="modal hidden sm:top-[15%] sm:left-[17%]">
                 <div class="w-[350px] p-4 rounded border border-deep-purple shadow-lg">
                     <div class="flex flex-col items-start space-y-4">
-                        <span class="text-deep-purple hover:text-light-purple text-left">ホーム</span>
+                        <span class="text-deep-purple hover:text-light-purple text-left"><a href="{{ url('/') }}">ホーム</a></span>
                         <span class="text-deep-purple hover:text-light-purple text-left">プロフィール</span>
                         <span class="text-deep-purple hover:text-light-purple text-left">ログアウト</span>
                     </div>
@@ -41,15 +41,19 @@
             <div id="postModal" class="modal flex justify-center mb-8 hidden">
                 <div class="w-[300px] sm:w-[500px] p-4 rounded border border-deep-purple shadow-lg">
                     <h2 class="text-center text-deep-purple text-xl sm:text-2xl mb-4">投稿</h2>
-                    <form action="{{ url('common_post') }}" method="POST">
+                    <form action="{{ url('posts.store') }}" method="POST">
                         @csrf
                         <input type="hidden" name="user_id" value="1">
                         <div class="flex mb-4 justify-center">
                             <textarea id="text" name="text" class="mt-1 block border border-deep-purple rounded h-32 w-full sm:w-[85%]" required placeholder="投稿内容を入力してください"></textarea>
                         </div>
                         <div class="flex mb-4 sm:ml-10 justify-start text-2xl sm:text-3xl text-deep-purple">
-                            <i class="fas fa-image"></i>
+                            <label for="image-upload" class="cursor-pointer" id="image-icon">
+                                <i class="fas fa-image"></i>
+                            </label>
+                            <input id="image-upload" type="file" name="image" class="hidden" accept="image/*">
                         </div>
+                        <div id="preview" class="relative flex justify-center sm:justify-start mb-4 sm:ml-10"></div>
                         <div id="closePostModalBtn" class="flex flex-col sm:flex-row justify-center sm:m-8 gap-4 sm:gap-6">
                             <button type="submit" class="w-full sm:w-24 bg-deep-purple text-white py-2 mr-32 rounded hover:bg-deep-purple-dark hover-fade">投稿する</button>
                             <button type="button" class="w-full sm:w-24 border border-deep-purple text-deep-purple py-2 rounded hover:bg-deep-purple-light hover-fade">キャンセル</button>
