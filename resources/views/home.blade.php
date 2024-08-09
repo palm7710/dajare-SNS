@@ -51,6 +51,7 @@
                                             <span class="ml-1 text-black font-light">0</span>
                                         </a>
                                         @auth
+                                        @if (Auth::user()->id === $post->user_id)
                                         <form action="{{ url('dajare_post/' . $post->id) }}" method="POST" style="display:inline;">
                                             @csrf
                                             @method('DELETE')
@@ -58,6 +59,7 @@
                                                 <i class="fas fa-trash-alt"></i>
                                             </button>
                                         </form>
+                                        @endif
                                         @endauth
                                     </div>
                                 </div>
@@ -116,6 +118,7 @@
                                             <span class="ml-1 text-black font-light">0</span>
                                         </a>
                                         @auth
+                                        @if (Auth::user()->id === $post->user_id)
                                         <form action="{{ url('common_post/' . $post->id) }}" method="POST" style="display:inline;">
                                             @csrf
                                             @method('DELETE')
@@ -123,7 +126,9 @@
                                                 <i class="fas fa-trash-alt"></i>
                                             </button>
                                         </form>
+                                        @endif
                                         @endauth
+
                                     </div>
                                 </div>
                             </div>

@@ -38,13 +38,12 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-
-// ダイアログの表示
+// 投稿ダイアログの表示
 // 要素の取得
-const openModalBtn = document.getElementById('openModalBtn');
-const closeModalBtn = document.getElementById('closeModalBtn');
-const modal = document.getElementById('modal');
-const modalOverlay = document.getElementById('modalOverlay');
+const openModalBtn = document.getElementById('openPostModalBtn');
+const closeModalBtn = document.getElementById('closePostModalBtn');
+const modal = document.getElementById('postModal');
+const modalOverlay = document.getElementById('postModalOverlay');
 
 // モーダルを開く処理
 openModalBtn.addEventListener('click', () => {
@@ -62,4 +61,27 @@ closeModalBtn.addEventListener('click', () => {
 modalOverlay.addEventListener('click', () => {
     modal.style.display = 'none';
     modalOverlay.style.display = 'none';
+});
+
+const openProfileModal = document.getElementById('openProfileModal');
+const closeProfileModal = document.getElementById('closeProfileModal');
+const profileModal = document.getElementById('profileModal');
+const profileModalOverlay = document.getElementById('profileModalOverlay');
+
+// モーダルを開く処理
+openProfileModal.addEventListener('click', () => {
+    profileModal.style.display = 'block';
+    profileModalOverlay.style.display = 'block';
+});
+
+// モーダルを閉じる処理
+closeProfileModal.addEventListener('click', () => {
+    profileModal.style.display = 'none';
+    profileModalOverlay.style.display = 'none';
+});
+
+// オーバーレイをクリックした場合もモーダルを閉じる
+profileModalOverlay.addEventListener('click', () => {
+    profileModal.style.display = 'none';
+    profileModalOverlay.style.display = 'none';
 });
