@@ -44,11 +44,11 @@
                                     </div>
                                     @endif
                                     <div class="flex items-center mt-2 justify-end">
-                                        <form action="{{ url('dajare_post/' . $post->id) }}" method="POST" style="display:inline;">
+                                        <form action="{{ route('dajare_post.store', ['user_id' => 1, 'post_id' => $post->id,]) }}" method="POST" style="display:inline;">
                                             @csrf
                                             <button type="submit" class="text-custom-gray hover:text-custom-red mr-4 hover-fade">
                                                 <i class="fas fa-heart"></i>
-                                                <span class="ml-1 text-black font-light">0</span>
+                                                <span class="ml-1 text-black font-light">{{ \App\Models\Like::countByPostIdDajare($post->id) }}</span>
                                             </button>
                                         </form>
                                         <a href="{{ url('dajare_post/' . $post->id) }}" class="text-custom-gray hover:text-deep-purple mr-4 hover-fade">

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CommonLikeController;
+use App\Http\Controllers\DajareLikeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
@@ -26,8 +27,10 @@ Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
 Route::get('common_post/{id}', [CommonPostController::class, 'show'])->name('common_post.show');
 Route::get('dajare_post/{id}', [DajarePostController::class, 'show'])->name('dajare_post.show');
 
-// 普通の投稿のいいね
+// 普通の投稿のいいねのルート
 Route::post('/common_post/{post_id}/likes', [CommonLikeController::class, 'store'])->name('common_post.store');
 Route::delete('common_post/{post_id}/liles', [CommonLikeController::class, 'destroy'])->name('common_post.destroy');
 
-
+// ダジャレ投稿のいいねのルート
+Route::post('/dajare_post/{post_id}/likes', [DajareLikeController::class, 'store'])->name('dajare_post.store');
+Route::delete('dajare_post/{post_id}/liles', [DajarePostController::class, 'destroy'])->name('dajare_post.destroy');

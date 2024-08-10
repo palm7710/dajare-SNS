@@ -15,4 +15,10 @@ class Like extends Model
         return self::where('common_post_id', $postId)
             ->count();
     }
+
+    public static function countByPostIdDajare($postId)
+    {
+        return self::where('dajare_post_id', $postId)
+            ->count();
+    }
 }
