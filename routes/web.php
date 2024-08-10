@@ -12,8 +12,8 @@ Route::get('/', [HomeController::class, 'index']);
 
 // ユーザーに対応するルート
 Route::prefix('users')->group(function () {
-    Route::get('{id}/show', [UserController::class, 'show'])->name('users.show');
-    Route::put('{id}/update', [UserController::class, 'update'])->name('users.update');
+    Route::get('{id}', [UserController::class, 'show'])->name('users.show');
+    Route::put('{id}', [UserController::class, 'update'])->name('users.update');
 });
 
 // 各投稿タイプに対応するルート

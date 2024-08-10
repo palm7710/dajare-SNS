@@ -4,17 +4,27 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 
 class UserController extends Controller
 {
     public function show($id) {
 
-        $user = User::find($id);
+        // 現在ログインしてるユーザーを取得
+        $currentUser = Auth::user();
 
-        // dd($user);
+        $user = User::findOrFail($id);
 
-        return view('user', ['user' => $user]);
+        // 表示しようとしているページがカレントユーザーのページじゃない
+        // if ($user != $currentUser) {
+        //     // ユーザー詳細ページを表示
+        //     return view('user.show', ['user' => $user]);
+        // }
+
+        // 表示しようとしているページがカレントユーザーのページ
+        // プロフィール画面を表示
+        return view('user.profile', ['user' => $user]);
     }
 
     public function update(Request $request) {

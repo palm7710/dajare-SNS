@@ -7,7 +7,7 @@
 <div class="flex items-center justify-center">
     <div class="mx-auto mt-8 w-1/3">
         <p class="text-center text-lg mb-4">@ {{ $user->user_id }}</p>    
-        <form method="POST" action="/users/{{ $user->id }}/update" enctype="multipart/form-data">
+        <form method="POST" action="/users/{{ $user->id }}" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             
