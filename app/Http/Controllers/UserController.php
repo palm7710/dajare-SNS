@@ -35,7 +35,7 @@ class UserController extends Controller
 
         // 表示しようとしているページがカレントユーザーのページ
         // プロフィール画面を表示
-        return view('user.profile', ['user' => $user]);
+        return view('user.profile', compact('user'));
     }
 
     public function update(Request $request) {
