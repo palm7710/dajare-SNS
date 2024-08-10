@@ -11,7 +11,7 @@
                 @endguest
                 @auth
                 <div id="openProfileModal">
-                    <img src="{{ asset('storage/profile/' . Auth::user()->profile_image) }}" class="cursor-pointer w-24 h-24" />
+                    <img src="{{ Auth::user()->profile_image }}" class="cursor-pointer" />
                 </div>
 
                 @endauth
