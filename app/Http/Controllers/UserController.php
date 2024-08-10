@@ -2,19 +2,40 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CommonPost;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
+use App\Models\DajarePost;
 use App\Models\User;
 
 class UserController extends Controller
 {
     public function show($id) {
 
-        $user = User::find($id);
+        $user = User::findOrFail($id);
 
-        // dd($user);
+        $commonPosts = CommonPost::where('user_id', $id)
+            ->orderBy('updated_at', 'DESC')
+            ->paginate(6);
 
-        return view('user', ['user' => $user]);
+        $dajarePosts = DajarePost::where('user_id', $id)
+            ->orderBy('updated_at', 'DESC')
+            ->paginate(6);
+
+        // ユーザー詳細ページを表示
+        return view('user.show', compact('user', 'commonPosts', 'dajarePosts'));
+    }
+
+    public function profile($id) {
+        // 現在ログインしてるユーザーを取得
+        $currentUser = Auth::user();
+
+        $user = User::findOrFail($id);
+
+        // 表示しようとしているページがカレントユーザーのページ
+        // プロフィール画面を表示
+        return view('user.profile', compact('user'));
     }
 
     public function update(Request $request) {
@@ -56,7 +77,6 @@ class UserController extends Controller
         // // ユーザー情報を保存
         $user->save();
 
-        return redirect()->route('users.show', ['id' => $user->id])->with('success', 'Profile updated successfully.');
-
+        return redirect()->route('users.show', ['id' => $user->id])->with('success', 'ユーザー情報の変更が成功しました');
     }
 }
