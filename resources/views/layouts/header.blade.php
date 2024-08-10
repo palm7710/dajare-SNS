@@ -13,8 +13,8 @@
                 <div class="w-[350px] p-4 rounded border border-deep-purple shadow-lg">
                     <div class="flex flex-col items-start space-y-4">
                         <span class="text-deep-purple hover:text-light-purple text-left"><a href="{{ url('/') }}">ホーム</a></span>
-                        <span class="text-deep-purple hover:text-light-purple text-left">プロフィール</span>
-                        <span class="text-deep-purple hover:text-light-purple text-left">ログアウト</span>
+                        <span class="text-deep-purple hover:text-light-purple text-left"><a href="{{ url('/') }}">プロフィール</a></span>
+                        <span class="text-deep-purple hover:text-light-purple text-left"><a href="{{ url('/') }}">ログアウト</a></span>
                     </div>
                     <button id="closeProfileModal" class="absolute top-4 right-4 text-deep-purple hover:text-light-purple">
                         <i class="fas fa-times"></i>
