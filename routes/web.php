@@ -15,6 +15,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home.index');
 // ユーザーに対応するルート
 Route::prefix('users')->group(function () {
     Route::get('{id}', [UserController::class, 'show'])->name('users.show');
+    Route::get('{id}/profile', [UserController::class, 'profile'])->name('users.profile');
     Route::put('{id}', [UserController::class, 'update'])->name('users.update');
 });
 

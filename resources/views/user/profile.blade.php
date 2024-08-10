@@ -57,7 +57,7 @@
             </div>
 
             <div class="flex justify-center">
-                <button type="submit" class="toggle-section border-deep-purple w-[250px] px-4 py-2 rounded-full mr-8 hover-fade bg-deep-purple text-white">
+                <button type="submit" class="toggle-section border-deep-purple w-[250px] px-4 py-2 rounded-full hover-fade bg-deep-purple text-white">
                     プロフィールを変更する
                 </button>
             </div>

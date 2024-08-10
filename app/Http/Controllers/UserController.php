@@ -2,25 +2,36 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CommonPost;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
+use App\Models\DajarePost;
 use App\Models\User;
 
 class UserController extends Controller
 {
     public function show($id) {
 
+        $user = User::findOrFail($id);
+
+        $commonPosts = CommonPost::where('user_id', $id)
+            ->orderBy('updated_at', 'DESC')
+            ->paginate(6);
+
+        $dajarePosts = DajarePost::where('user_id', $id)
+            ->orderBy('updated_at', 'DESC')
+            ->paginate(6);
+
+        // ユーザー詳細ページを表示
+        return view('user.show', compact('user', 'commonPosts', 'dajarePosts'));
+    }
+
+    public function profile($id) {
         // 現在ログインしてるユーザーを取得
         $currentUser = Auth::user();
 
         $user = User::findOrFail($id);
-
-        // 表示しようとしているページがカレントユーザーのページじゃない
-        // if ($user != $currentUser) {
-        //     // ユーザー詳細ページを表示
-        //     return view('user.show', ['user' => $user]);
-        // }
 
         // 表示しようとしているページがカレントユーザーのページ
         // プロフィール画面を表示
