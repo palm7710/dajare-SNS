@@ -6,5 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Post extends CommonPost
 {
-    protected $table = 'posts';
+    use HasFactory;
+    protected $fillable = [
+        'user_id',
+        'txit',
+        'image',
+        'impression',
+    ];
 }

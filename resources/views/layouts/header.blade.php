@@ -41,7 +41,7 @@
             <div id="postModal" class="modal flex justify-center mb-8 hidden">
                 <div class="w-[300px] sm:w-[500px] p-4 rounded border border-deep-purple shadow-lg">
                     <h2 class="text-center text-deep-purple text-xl sm:text-2xl mb-4">投稿</h2>
-                    <form action="{{ url('posts.store') }}" method="POST">
+                    <form action="/posts" method="POST" enctype="multipart/form-data">
                         @csrf
                         <input type="hidden" name="user_id" value="1">
                         <div class="flex mb-4 justify-center">

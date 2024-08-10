@@ -15,12 +15,20 @@ class PostController extends Controller
 
     public function store(Request $request)
     {
+        //return redirect()->route('home');
+
         // バリデーション
         $request->validate([
             'text' => 'required|string|max:255',
             'image' => 'nullable|image',
         ]);
+        //dd("345");
 
+        dd($request);
+
+
+
+        /*
         $data = $request->only(['text', 'image']);
         $data['user_id'] = auth()->id();
 
@@ -36,8 +44,10 @@ class PostController extends Controller
         } else {
             $imagePath = null; // 画像がない場合
         }
-
-        return redirect()->route('posts.index');
+        return redirect()->route('users.show', ['id' => $user->id])->with('success', 'Profile updated successfully.');
+        //return redirect()->route('posts.index');
+        */
+        return redirect()->route('home');
     }
     // ダジャレ判定のメソッド
     private function isDajare($text)
