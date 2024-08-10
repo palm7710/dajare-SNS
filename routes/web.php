@@ -7,6 +7,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CommonPostController;
 use App\Http\Controllers\DajarePostController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 //ホーム画面のルート
 Route::get('/', [HomeController::class, 'index']);
@@ -26,6 +27,11 @@ Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
 Route::get('common_post/{id}', [CommonPostController::class, 'show'])->name('common_post.show');
 Route::get('dajare_post/{id}', [DajarePostController::class, 'show'])->name('dajare_post.show');
 
+//ログインページルート
+Route::get('/login',[AuthenticatedSessionController::class,'login'])
+// ->middleware('/')
+->name('custom.login');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -36,4 +42,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
