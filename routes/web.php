@@ -39,6 +39,11 @@ Route::post('/logout', function () {
     return redirect('/');
 })->name('logout');
 
+Route::get('/registration-complete', function () {
+    return view('auth.registration-complete');
+})->name('registration.complete');
+
+
 // 普通の投稿のいいねのルート
 Route::post('/common_post/{post_id}/likes', [CommonLikeController::class, 'store'])->name('common_post.store');
 Route::delete('common_post/{post_id}/liles', [CommonLikeController::class, 'destroy'])->name('common_post.destroy');
