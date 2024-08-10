@@ -11,13 +11,22 @@ class DajareLikeController extends Controller
     public function store(Request $request)
     {
         $user = Auth::user();
-        $like = new Like();
+        $exists = Like::where('user_id', $request->user_id)
+                      ->where('dajare_post_id', $request->post_id)
+                      ->exists();
 
-        $like->user_id = $request->user_id;
-        $like->dajare_post_id = $request->post_id;
-        $like->save();
+        if (!$exists) {
+            $like = new Like();
+            $like->user_id = $request->user_id;
+            $like->dajare_post_id = $request->post_id;
+            $like->save();
 
-        // return redirect()->view('home');
+        } else {
+            Like::where('user_id', $request->user_id)
+                ->where('dajare_post_id', $request->post_id)
+                ->delete();
+        }
+
         return redirect()->route('home.index');
     }
 }
