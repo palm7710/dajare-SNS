@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Models\DajarePost;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -22,15 +23,16 @@ class PostController extends Controller
             'text' => 'required|string|max:255',
             'image' => 'nullable|image',
         ]);
-        //dd("345");
+        $user = Auth::user();
+        $text = $request->input('text');
+        $post = new Post();
 
-        dd($request);
+        //ユーザーIDを仮で１に設定。後で治す。
+        $post->user_id = 1;
+        $post->text = $text;
 
-
-
-        /*
-        $data = $request->only(['text', 'image']);
-        $data['user_id'] = auth()->id();
+        //最初のインプレッションは0に指定。
+        $post->impression=0;
 
         // 画像がアップロードされている場合
         if ($request->hasFile('image')) {
@@ -38,16 +40,15 @@ class PostController extends Controller
             $imageName = time() . '.' . $image->getClientOriginalExtension(); // 画像ファイル名を生成
 
             // 画像を指定のディレクトリに保存
-            $image->storeAs('/Applications/MAMP/htdocs/dajare-SNS/public/storage/post', $imageName);
+            $image->storeAs('public/post', $imageName);
 
             $imagePath = 'storage/post/' . $imageName; // 画像のパスを保存
-        } else {
-            $imagePath = null; // 画像がない場合
+            $post->image = $imagePath; // 画像のパスをモデルに設定
         }
-        return redirect()->route('users.show', ['id' => $user->id])->with('success', 'Profile updated successfully.');
-        //return redirect()->route('posts.index');
-        */
-        return redirect()->route('home');
+
+        $post->save(); // データベースに保存
+
+        return redirect()->route('home.index');
     }
     // ダジャレ判定のメソッド
     private function isDajare($text)

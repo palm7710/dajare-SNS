@@ -3,13 +3,14 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-
-class Post extends CommonPost
+use Illuminate\Database\Eloquent\Model;
+class Post extends Model
 {
     use HasFactory;
+    protected $table = 'common_posts';
     protected $fillable = [
         'user_id',
-        'txit',
+        'text',
         'image',
         'impression',
     ];
