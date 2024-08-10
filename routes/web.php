@@ -37,6 +37,10 @@ Route::post('/logout', function () {
     return redirect('/');
 })->name('logout');
 
+Route::get('/registration-complete', function () {
+    return view('auth.registration-complete');
+})->name('registration.complete');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

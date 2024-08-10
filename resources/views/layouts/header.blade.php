@@ -2,9 +2,19 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center h-24">
             <!-- 左アイコン（ログインした時だけ表示） -->
-            <div id="openProfileModal" class="text-deep-purple text-4xl sm:text-6xl">
-                <i class="fas fa-user-circle cursor-pointer"></i>
-            </div>
+            <div class="text-deep-purple text-4xl sm:text-6xl">
+    @guest
+    <a href="{{ route('login') }}">
+        <i class="fas fa-user-circle cursor-pointer"></i>
+    </a>
+    @endguest
+    @auth
+    <div id="openProfileModal">
+    <img src="{{ Auth::user()->profile_image }}" class="cursor-pointer" />
+    </div>
+    
+    @endauth
+</div>
 
             <!-- メニューのダイアログ -->
             <div id="profileModalOverlay" class="modal-overlay hidden"></div>
