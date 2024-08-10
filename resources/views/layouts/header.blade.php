@@ -2,9 +2,13 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center h-24">
             <!-- 左アイコン（ログインした時だけ表示） -->
+            @auth
+            @if (Auth::user()->id === $post->user_id)
             <div id="openProfileModal" class="text-deep-purple text-4xl sm:text-6xl">
-                <i class="fas fa-user-circle cursor-pointer"></i>
+                <img src="{{ Auth::user()->profile_image }}" alt="Profile Image" class="cursor-pointer" />
             </div>
+            @endif
+            @endauth
 
             <!-- メニューのダイアログ -->
             <div id="profileModalOverlay" class="modal-overlay hidden"></div>
