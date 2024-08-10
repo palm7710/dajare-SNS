@@ -13,7 +13,7 @@
                 <div class="flex items-start">
                     <!-- プロフィール画像 -->
                     <div class="w-14 h-14 rounded-full mr-4">
-                        <img src="{{ asset('storage/profile/' . $post->user->profile_image) }}" alt="Profile Image">
+                        <img src="{{ asset('profile/' . $post->user->profile_image) }}" alt="Profile Image">
                     </div>
                     <div class="flex-1">
                         <div class="text-sm flex items-center justify-between">
@@ -28,7 +28,7 @@
                         <div class="text-lg text-black">{{ $post->text }}</div>
                         @if($post->image)
                         <div class="relative w-full mt-4" style="padding-bottom: 50%;">
-                            <img src="{{ url('storage/post/' . basename($post->image)) }}" alt="投稿画像" class="absolute top-0 left-0 w-full h-full object-cover">
+                            <img src="{{ url('post/' . basename($post->image)) }}" alt="投稿画像" class="absolute top-0 left-0 w-full h-full object-cover">
                         </div>
                         @endif
 
