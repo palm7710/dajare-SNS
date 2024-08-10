@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
@@ -8,9 +7,12 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\CommonPostController;
 use App\Http\Controllers\DajarePostController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\CommonLikeController;
+use App\Http\Controllers\DajareLikeController;
 
 //ホーム画面のルート
-Route::get('/', [HomeController::class, 'index']);
+Route::get('/', [HomeController::class, 'index'])->name('home.index');
 
 // ユーザーに対応するルート
 Route::prefix('users')->group(function () {
@@ -28,14 +30,22 @@ Route::get('common_post/{id}', [CommonPostController::class, 'show'])->name('com
 Route::get('dajare_post/{id}', [DajarePostController::class, 'show'])->name('dajare_post.show');
 
 //ログインページルート
-Route::get('/login',[AuthenticatedSessionController::class,'login'])
-// ->middleware('/')
-->name('custom.login');
+Route::get('/login', [AuthenticatedSessionController::class, 'login'])
+    // ->middleware('/')
+    ->name('custom.login');
 
 Route::post('/logout', function () {
     Auth::logout();
     return redirect('/');
 })->name('logout');
+
+// 普通の投稿のいいねのルート
+Route::post('/common_post/{post_id}/likes', [CommonLikeController::class, 'store'])->name('common_post.store');
+Route::delete('common_post/{post_id}/liles', [CommonLikeController::class, 'destroy'])->name('common_post.destroy');
+
+// ダジャレ投稿のいいねのルート
+Route::post('/dajare_post/{post_id}/likes', [DajareLikeController::class, 'store'])->name('dajare_post.store');
+Route::delete('dajare_post/{post_id}/liles', [DajarePostController::class, 'destroy'])->name('dajare_post.destroy');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
