@@ -11,8 +11,10 @@ use App\Http\Controllers\DajarePostController;
 Route::get('/', [HomeController::class, 'index']);
 
 // ユーザーに対応するルート
-Route::get('/users', [UserController::class, 'index']);
-Route::get('/users/{id}', [UserController::class, 'show']);
+Route::prefix('users')->group(function () {
+    Route::get('{id}/show', [UserController::class, 'show'])->name('users.show');
+    Route::put('{id}/update', [UserController::class, 'update'])->name('users.update');
+});
 
 // 各投稿タイプに対応するルート
 Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
