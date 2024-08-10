@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;
-use App\Models\DajarePost;
+use App\Models\SendCommonPost;
+use App\Models\SendDajarePost;
+use App\Models\CheckDajare;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,23 +17,16 @@ class PostController extends Controller
 
     public function store(Request $request)
     {
-        //return redirect()->route('home');
-
         // バリデーション
         $request->validate([
             'text' => 'required|string|max:255',
             'image' => 'nullable|image',
         ]);
+
+
         $user = Auth::user();
         $text = $request->input('text');
-        $post = new Post();
-
-        //ユーザーIDを仮で１に設定。後で治す。
-        $post->user_id = 1;
-        $post->text = $text;
-
-        //最初のインプレッションは0に指定。
-        $post->impression=0;
+        $imagePath = null;
 
         // 画像がアップロードされている場合
         if ($request->hasFile('image')) {
@@ -43,17 +37,34 @@ class PostController extends Controller
             $image->storeAs('public/post', $imageName);
 
             $imagePath = 'storage/post/' . $imageName; // 画像のパスを保存
-            $post->image = $imagePath; // 画像のパスをモデルに設定
         }
 
-        $post->save(); // データベースに保存
+        //ダジャレになっている文字数が、ダジャレスコアとして返ってくる
+        $checkDajare = new CheckDajare();
+        $dajareScore = $checkDajare->findMaxDajare($text);
 
+        if ($dajareScore === -1) {
+            //ダジャレではないので通常ポストへ
+            $post = new SendCommonPost();
+
+            //ユーザーIDを仮で１に設定。後で治す。
+            $post->user_id = 1;
+            $post->text = $text;
+            $post->impression = 0; //閲覧数は初期値0に指定
+            $post->image = $imagePath; // 画像のパスをモデルに設定
+            $post->save(); // データベースに保存
+        } else {
+            //ダジャレなのでダジャレポストへ
+            $post = new SendDajarePost();
+
+            //ユーザーIDを仮で１に設定。後で治す。
+            $post->user_id = 1;
+            $post->text = $text;
+            $post->impression = 0; //閲覧数は初期値0に指定
+            $post->dajare_score=$dajareScore;
+            $post->image = $imagePath; // 画像のパスをモデルに設定
+            $post->save(); // データベースに保存
+        }
         return redirect()->route('home.index');
-    }
-    // ダジャレ判定のメソッド
-    private function isDajare($text)
-    {
-        // ここにダジャレ判定の実装をする
-        return false;
     }
 }
