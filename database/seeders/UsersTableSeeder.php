@@ -17,7 +17,7 @@ class UsersTableSeeder extends Seeder
             [
                 'id' => 1,
                 'user_id' => 'tarou_00',
-                'mail_address' => 'tarou@example.com',
+                'email' => 'tarou@example.com',
                 'password' => Hash::make('password123'),
                 'user_name' => 'Tarou',
                 'profile_image' => 'user1.jpg',
@@ -28,7 +28,7 @@ class UsersTableSeeder extends Seeder
             [
                 'id' => 2,
                 'user_id' => 'yamada_00',
-                'mail_address' => 'yamada@example.com',
+                'email' => 'yamada@example.com',
                 'password' => Hash::make('password123'),
                 'user_name' => 'Yamada',
                 'profile_image' => 'user2.jpg',
@@ -39,7 +39,7 @@ class UsersTableSeeder extends Seeder
             [
                 'id' => 3,
                 'user_id' => 'hanako_00',
-                'mail_address' => 'hanako@example.com',
+                'email' => 'hanako@example.com',
                 'password' => Hash::make('password123'),
                 'user_name' => 'Hanako',
                 'profile_image' => 'user3.jpg',
@@ -50,7 +50,7 @@ class UsersTableSeeder extends Seeder
             [
                 'id' => 4,
                 'user_id' => 'suzuki_00',
-                'mail_address' => 'suzuki@example.com',
+                'email' => 'suzuki@example.com',
                 'password' => Hash::make('password123'),
                 'user_name' => 'Suzuki',
                 'profile_image' => 'user4.jpg',
@@ -61,7 +61,7 @@ class UsersTableSeeder extends Seeder
             [
                 'id' => 5,
                 'user_id' => 'tanaka_00',
-                'mail_address' => 'tanaka@example.com',
+                'eemail' => 'tanaka@example.com',
                 'password' => Hash::make('password123'),
                 'user_name' => 'Tanaka',
                 'profile_image' => 'user5.jpg',
