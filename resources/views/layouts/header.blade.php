@@ -11,11 +11,21 @@
 
             <div id="profileModal" class="modal hidden sm:top-[15%] sm:left-[17%]">
                 <div class="w-[350px] p-4 rounded border border-deep-purple shadow-lg">
-                    <div class="flex flex-col items-start space-y-4">
-                        <span class="text-deep-purple hover:text-light-purple text-left"><a href="{{ url('/') }}">ホーム</a></span>
-                        <span class="text-deep-purple hover:text-light-purple text-left">プロフィール</span>
-                        <span class="text-deep-purple hover:text-light-purple text-left">ログアウト</span>
-                    </div>
+                <div class="flex flex-col items-start space-y-4">
+    <span class="text-deep-purple hover:text-light-purple text-left">
+        <a href="{{ url('/') }}">ホーム</a>
+    </span>
+    <span class="text-deep-purple hover:text-light-purple text-left">
+        <a href="{{ url('/profile') }}">プロフィール</a>
+    </span>
+    <span class="text-deep-purple hover:text-light-purple text-left" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+        ログアウト
+    </span>
+
+    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+        @csrf
+    </form>
+</div>
                     <button id="closeProfileModal" class="absolute top-4 right-4 text-deep-purple hover:text-light-purple">
                         <i class="fas fa-times"></i>
                     </button>

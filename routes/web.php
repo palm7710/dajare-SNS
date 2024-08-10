@@ -32,6 +32,11 @@ Route::get('/login',[AuthenticatedSessionController::class,'login'])
 // ->middleware('/')
 ->name('custom.login');
 
+Route::post('/logout', function () {
+    Auth::logout();
+    return redirect('/');
+})->name('logout');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
