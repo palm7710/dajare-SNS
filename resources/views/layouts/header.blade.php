@@ -2,8 +2,19 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center h-24">
             <!-- 左アイコン（ログインした時だけ表示） -->
-            <div id="openProfileModal" class="text-deep-purple text-4xl sm:text-6xl">
-                <i class="fas fa-user-circle cursor-pointer"></i>
+            <!-- 左アイコン（ログインした時だけ表示） -->
+            <div class="text-deep-purple text-4xl sm:text-6xl">
+                @guest
+                <a href="{{ route('login') }}">
+                    <i class="fas fa-user-circle cursor-pointer"></i>
+                </a>
+                @endguest
+                @auth
+                <div id="openProfileModal">
+                    <img src="{{ Auth::user()->profile_image }}" class="cursor-pointer" />
+                </div>
+
+                @endauth
             </div>
 
             <!-- メニューのダイアログ -->
@@ -12,9 +23,19 @@
             <div id="profileModal" class="modal hidden sm:top-[15%] sm:left-[17%]">
                 <div class="w-[350px] p-4 rounded border border-deep-purple shadow-lg">
                     <div class="flex flex-col items-start space-y-4">
-                        <span class="text-deep-purple hover:text-light-purple text-left"><a href="{{ url('/') }}">ホーム</a></span>
-                        <span class="text-deep-purple hover:text-light-purple text-left"><a href="{{ url('/') }}">プロフィール</a></span>
-                        <span class="text-deep-purple hover:text-light-purple text-left"><a href="{{ url('/') }}">ログアウト</a></span>
+                        <span class="text-deep-purple hover:text-light-purple text-left">
+                            <a href="{{ url('/') }}">ホーム</a>
+                        </span>
+                        <span class="text-deep-purple hover:text-light-purple text-left">
+                            <a href="{{ url('/profile') }}">プロフィール</a>
+                        </span>
+                        <span class="text-deep-purple hover:text-light-purple text-left" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            ログアウト
+                        </span>
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
                     </div>
                     <button id="closeProfileModal" class="absolute top-4 right-4 text-deep-purple hover:text-light-purple">
                         <i class="fas fa-times"></i>
