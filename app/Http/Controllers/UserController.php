@@ -66,7 +66,6 @@ class UserController extends Controller
         // // ユーザー情報を保存
         $user->save();
 
-        return redirect()->route('users.show', ['id' => $user->id])->with('success', 'Profile updated successfully.');
-
+        return redirect()->route('users.show', ['id' => $user->id])->with('success', 'ユーザー情報の変更が成功しました');
     }
 }
