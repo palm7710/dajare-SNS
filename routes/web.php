@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
@@ -24,3 +25,15 @@ Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
 // 詳細画面のルート
 Route::get('common_post/{id}', [CommonPostController::class, 'show'])->name('common_post.show');
 Route::get('dajare_post/{id}', [DajarePostController::class, 'show'])->name('dajare_post.show');
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+require __DIR__.'/auth.php';
