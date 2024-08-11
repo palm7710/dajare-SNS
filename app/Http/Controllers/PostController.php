@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\CommonPost;
+
 use App\Models\DajarePost;
 use App\Models\CommonPost;
-use Illuminate\Http\Request;
 use App\Models\Comment;
 use App\Models\CheckDajare;
 use Illuminate\Http\Request;
