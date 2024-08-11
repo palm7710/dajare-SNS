@@ -17,4 +17,9 @@ class DajarePost extends CommonPost
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+    // コメントとのリレーションを定義
+    public function comments()
+    {
+        return $this->hasMany(Comment::class, 'dajare_post_id');
+    }
 }
