@@ -14,7 +14,7 @@ class DajarePostController extends Controller
         $post = DajarePost::findOrFail($id);
 
         // 特定の投稿と関連ユーザーを取得
-        $post = DajarePost::with('user')->findOrFail($id);
+        $post = DajarePost::with(['user', 'comments.user'])->findOrFail($id);
 
         // ビューにデータを渡す
         return view('dajare_post.show', compact('post'));

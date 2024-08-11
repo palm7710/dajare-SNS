@@ -86,6 +86,7 @@ profileModalOverlay.addEventListener('click', () => {
     profileModalOverlay.style.display = 'none';
 });
 
+
 // プレビュー画像の表示
 function previewFile(file) {
     const preview = document.getElementById('preview');
