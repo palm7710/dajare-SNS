@@ -14,7 +14,9 @@
                 <div class="flex items-start">
                     <!-- プロフィール画像 -->
                     <div class="w-14 h-14 rounded-full mr-4">
-                        <img src="{{ asset('storage/profile/' . $post->user->profile_image) }}" alt="Profile Image">
+                        <a href="{{ route('users.show', $post->user->id) }}">
+                            <img src="{{ asset($post->user->profile_image) }}" alt="Profile Image">
+                        </a>
                     </div>
                     <div class="flex-1">
                         <div class="text-sm flex items-center justify-between">

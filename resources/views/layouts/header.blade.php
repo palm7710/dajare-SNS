@@ -10,7 +10,7 @@
                 </a>
                 @endguest
                 @auth
-                <div id="openProfileModal">
+                <div id="openProfileModal" class="w-14 h-14 rounded-full">
                     <img src="{{ Auth::user()->profile_image }}" class="cursor-pointer" />
                 </div>
 

@@ -17,11 +17,11 @@ class UserController extends Controller
 
         $commonPosts = CommonPost::where('user_id', $id)
             ->orderBy('updated_at', 'DESC')
-            ->paginate(6);
+            ->paginate(4);
 
         $dajarePosts = DajarePost::where('user_id', $id)
             ->orderBy('updated_at', 'DESC')
-            ->paginate(6);
+            ->paginate(4);
 
         // ユーザー詳細ページを表示
         return view('user.show', compact('user', 'commonPosts', 'dajarePosts'));
@@ -32,6 +32,10 @@ class UserController extends Controller
         $currentUser = Auth::user();
 
         $user = User::findOrFail($id);
+
+        if ($currentUser->id != $user->id) {
+            $user = $currentUser;
+        }
 
         // 表示しようとしているページがカレントユーザーのページ
         // プロフィール画面を表示
