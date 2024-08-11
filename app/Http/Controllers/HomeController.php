@@ -10,8 +10,8 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $commonPosts = CommonPost::orderBy('updated_at', 'DESC')->paginate(6); // 6件ずつのページネーション
-        $dajarePosts = DajarePost::orderBy('updated_at', 'DESC')->paginate(6); // 6件ずつのページネーション
+        $commonPosts = CommonPost::with('user')->orderBy('updated_at', 'DESC')->paginate(6); // 6件ずつのページネーション
+        $dajarePosts = DajarePost::with('user')->orderBy('updated_at', 'DESC')->paginate(6); // 6件ずつのページネーション
 
         // ビューにデータを渡す
         return view('home', compact('commonPosts', 'dajarePosts'));
