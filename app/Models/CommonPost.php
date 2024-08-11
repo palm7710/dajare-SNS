@@ -11,9 +11,14 @@ class CommonPost extends Model
 
     protected $fillable = ['user_id', 'text', 'image', 'impression'];
 
-    // ユーザーとのリレーション
     public function user()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class);
+    }
+
+    // コメントとのリレーションを定義
+    public function comments()
+    {
+        return $this->hasMany(Comment::class, 'common_post_id');
     }
 }

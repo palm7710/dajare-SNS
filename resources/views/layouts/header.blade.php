@@ -2,7 +2,6 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center h-24">
             <!-- 左アイコン（ログインした時だけ表示） -->
-            <!-- 左アイコン（ログインした時だけ表示） -->
             <div class="text-deep-purple text-4xl sm:text-6xl">
                 @guest
                 <a href="{{ route('login') }}">
@@ -11,9 +10,8 @@
                 @endguest
                 @auth
                 <div id="openProfileModal">
-                    <img src="{{ Auth::user()->profile_image }}" class="cursor-pointer" />
+                    <img src="{{ asset('profile/' . Auth::user()->profile_image) }}" class="cursor-pointer w-24 h-24" />
                 </div>
-
                 @endauth
             </div>
 

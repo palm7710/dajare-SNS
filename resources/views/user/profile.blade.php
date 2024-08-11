@@ -8,30 +8,30 @@
 
     <!-- フラッシュメッセージ -->
     @if (session('success'))
-        <div id="flashMessage" class="fixed top-20 left-1/2 transform -translate-x-1/2 bg-deep-purple text-white py-2 px-4 rounded-lg shadow-lg">
-            <p class="pr-2">{{ session('success') }}</p>
-            <button id="closeFlash" class="absolute top-0 right-0 mt-2 mr-2 text-white hover:text-gray-200">
-                &times;
-            </button>
-        </div>
+    <div id="flashMessage" class="fixed top-20 left-1/2 transform -translate-x-1/2 bg-deep-purple text-white py-2 px-4 rounded-lg shadow-lg">
+        <p class="pr-2">{{ session('success') }}</p>
+        <button id="closeFlash" class="absolute top-0 right-0 mt-2 mr-2 text-white hover:text-gray-200">
+            &times;
+        </button>
+    </div>
     @endif
 
     @if ($errors->any())
-        <div class="fixed top-20 left-1/2 transform -translate-x-1/2 bg-red-500 text-white py-2 px-4 rounded-lg mb-4">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
+    <div class="fixed top-20 left-1/2 transform -translate-x-1/2 bg-red-500 text-white py-2 px-4 rounded-lg mb-4">
+        <ul>
+            @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
     @endif
 
     <div class="mx-auto mt-8 w-1/3">
-        <p class="text-center text-lg mb-4">@ {{ $user->user_id }}</p>    
+        <p class="text-center text-lg mb-4">@ {{ $user->user_id }}</p>
         <form method="POST" action="/users/{{ $user->id }}" enctype="multipart/form-data">
             @csrf
             @method('PUT')
-            
+
             <div class="flex justify-center mb-4">
                 <label for="profile_image" class="cursor-pointer">
                     <div class="relative">
