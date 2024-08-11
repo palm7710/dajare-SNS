@@ -8,12 +8,9 @@ class CheckDajare extends Model
     //最も長さの長いダジャレの文字数を返す。
     //ダジャレでない場合-1
     public function findMaxDajare($text){
-        //ここにロジックを記述
+        //'っ'と'-'を消去する
+        $S = str_replace(['っ', '-'], '', $text);
+        dd($S);
         return 5;
-    }
-    //'っ'と'-'を消去するサポート関数(使用予定)
-    private function deleteSmallChar($S){
-        $S = str_replace(['っ', '-'], '', $S);
-        return $S;
     }
 }
