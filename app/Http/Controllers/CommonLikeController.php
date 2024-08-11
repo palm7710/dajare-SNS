@@ -10,7 +10,6 @@ class CommonLikeController extends Controller
 {
     public function store(Request $request)
     {
-        $user = Auth::user();
         $exists = Like::where('user_id', $request->user_id)
                       ->where('common_post_id', $request->post_id)
                       ->exists();
