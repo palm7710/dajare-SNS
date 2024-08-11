@@ -69,12 +69,6 @@
                                                     <div class="flex mb-4 justify-center">
                                                         <textarea id="text" name="text" class="mt-1 block border border-deep-purple rounded h-32 w-full sm:w-[85%]" required placeholder="コメントを入力してください"></textarea>
                                                     </div>
-                                                    <div class="flex mb-4 sm:ml-10 justify-start text-2xl sm:text-3xl text-deep-purple">
-                                                        <label for="image-upload" class="cursor-pointer image-icon">
-                                                            <i class="fas fa-image"></i>
-                                                        </label>
-                                                        <input class="image-upload hidden" type="file" name="image" accept="image/*">
-                                                    </div>
                                                     <div class="preview relative flex justify-center sm:justify-start mb-4 sm:ml-10"></div>
                                                     <div class="flex flex-col sm:flex-row justify-center sm:m-8 gap-4 sm:gap-6">
                                                         <button type="submit" class="w-full sm:w-24 bg-deep-purple text-white py-2 rounded hover:bg-deep-purple-dark hover-fade">投稿する</button>
@@ -170,11 +164,6 @@
                                                         <textarea id="text" name="text" class="mt-1 block border border-deep-purple rounded h-32 w-full sm:w-[85%]" required placeholder="コメントを入力してください"></textarea>
                                                     </div>
                                                     <div class="flex mb-4 sm:ml-10 justify-start text-2xl sm:text-3xl text-deep-purple">
-                                                        <label for="image-upload" class="cursor-pointer image-icon">
-                                                            <i class="fas fa-image"></i>
-                                                        </label>
-                                                        <input class="image-upload hidden" type="file" name="image" accept="image/*">
-                                                    </div>
                                                     <div class="preview relative flex justify-center sm:justify-start mb-4 sm:ml-10"></div>
                                                     <div class="flex flex-col sm:flex-row justify-center sm:m-8 gap-4 sm:gap-6">
                                                         <button type="submit" class="w-full sm:w-24 bg-deep-purple text-white py-2 rounded hover:bg-deep-purple-dark hover-fade">投稿する</button>
