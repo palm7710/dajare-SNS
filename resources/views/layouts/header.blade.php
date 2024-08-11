@@ -9,8 +9,8 @@
                 </a>
                 @endguest
                 @auth
-                <div id="openProfileModal">
-                    <img src="{{ asset('profile/' . Auth::user()->profile_image) }}" class="cursor-pointer w-24 h-24" />
+                <div id="openProfileModal" class="w-14 h-14 rounded-full">
+                    <img src="{{ Auth::user()->profile_image }}" class="cursor-pointer" />
                 </div>
                 @endauth
             </div>

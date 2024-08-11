@@ -22,6 +22,9 @@
                     @foreach ($dajarePosts as $post)
 
                         <li class="border-b pb-4">
+                            <div class="bg-gray-100 rounded-lg py-2 text-center">
+                                <span class="text-xl text-deep-purple font-semibold">ダジャレ文字数: {{$post->dajare_score}}</span>
+                            </div>
                             <div class="flex items-start">
                                 <!-- プロフィール画像 -->
                                 <div class="w-14 h-14 rounded-full mr-4">
