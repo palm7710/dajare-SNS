@@ -20,29 +20,34 @@
             <div class="w-[500px] p-4 rounded">
                 <ul class="space-y-4">
                     @foreach ($dajarePosts as $post)
-                    <a href="{{ route('dajare_post.show', $post->id) }}">
+
                         <li class="border-b pb-4">
                             <div class="flex items-start">
                                 <!-- プロフィール画像 -->
                                 <div class="w-14 h-14 rounded-full mr-4">
-                                    <img src="{{ asset($post->user->profile_image) }}" alt="Profile Image">
+                                    <a href="{{ route('users.show', $post->user->id) }}">
+                                        <img src="{{ asset($post->user->profile_image) }}" alt="Profile Image">
+                                    </a>
                                 </div>
+
                                 <div class="flex-1">
-                                    <div class="text-sm flex items-center justify-between">
-                                        <div>
-                                            <span class="text-black font-bold">{{ $post->user->user_name }}</span>
-                                            <span class="text-deep-gray">@ {{ $post->user->user_id }}</span>
+                                    <a href="{{ route('dajare_post.show', $post->id) }}">
+                                        <div class="text-sm flex items-center justify-between">
+                                            <div>
+                                                <span class="text-black font-bold">{{ $post->user->user_name }}</span>
+                                                <span class="text-deep-gray">@ {{ $post->user->user_id }}</span>
+                                            </div>
+                                            <span class="text-deep-gray">
+                                                {{ $post->updated_at->diffForHumans() }}
+                                            </span>
                                         </div>
-                                        <span class="text-deep-gray">
-                                            {{ $post->updated_at->diffForHumans() }}
-                                        </span>
-                                    </div>
-                                    <div class="text-lg text-black">{{ $post->text }}</div>
-                                    @if($post->image)
-                                    <div class="relative w-full mt-4" style="padding-bottom: 50%;">
-                                        <img src="{{ url('storage/post/' . basename($post->image)) }}" alt="投稿画像" class="absolute top-0 left-0 w-full h-full object-cover">
-                                    </div>
-                                    @endif
+                                        <div class="text-lg text-black">{{ $post->text }}</div>
+                                        @if($post->image)
+                                        <div class="relative w-full mt-4" style="padding-bottom: 50%;">
+                                            <img src="{{ url('storage/post/' . basename($post->image)) }}" alt="投稿画像" class="absolute top-0 left-0 w-full h-full object-cover">
+                                        </div>
+                                        @endif
+                                    </a>
                                     <div class="flex items-center mt-2 justify-end">
                                         <form action="{{ route('dajare_post.store', ['user_id' => 1, 'post_id' => $post->id,]) }}" method="POST" style="display:inline;">
                                             @csrf
@@ -70,7 +75,7 @@
                                 </div>
                             </div>
                         </li>
-                    </a>
+
                     @endforeach
                 </ul>
 
@@ -96,24 +101,28 @@
                             <div class="flex items-start">
                                 <!-- プロフィール画像 -->
                                 <div class="w-14 h-14 rounded-full mr-4">
-                                    <img src="{{ asset($post->user->profile_image) }}" alt="Profile Image">
+                                    <a href="{{ route('users.show', $post->user->id) }}">
+                                        <img src="{{ asset($post->user->profile_image) }}" alt="Profile Image">
+                                    </a>
                                 </div>
                                 <div class="flex-1">
-                                    <div class="text-sm flex items-center justify-between">
-                                        <div>
-                                            <span class="text-black font-bold">{{ $post->user->user_name }}</span>
-                                            <span class="text-deep-gray">@ {{ $post->user->user_id }}</span>
+                                    <a href="{{ route('common_post.show', $post->id) }}">
+                                        <div class="text-sm flex items-center justify-between">
+                                            <div>
+                                                <span class="text-black font-bold">{{ $post->user->user_name }}</span>
+                                                <span class="text-deep-gray">@ {{ $post->user->user_id }}</span>
+                                            </div>
+                                            <span class="text-deep-gray">
+                                                {{ $post->updated_at->diffForHumans() }}
+                                            </span>
                                         </div>
-                                        <span class="text-deep-gray">
-                                            {{ $post->updated_at->diffForHumans() }}
-                                        </span>
-                                    </div>
-                                    <div class="text-lg text-black">{{ $post->text }}</div>
-                                    @if($post->image)
-                                    <div class="relative w-full mt-4" style="padding-bottom: 50%;">
-                                        <img src="{{ url('storage/post/' . basename($post->image)) }}" alt="投稿画像" class="absolute top-0 left-0 w-full h-full object-cover">
-                                    </div>
-                                    @endif
+                                        <div class="text-lg text-black">{{ $post->text }}</div>
+                                        @if($post->image)
+                                        <div class="relative w-full mt-4" style="padding-bottom: 50%;">
+                                            <img src="{{ url('storage/post/' . basename($post->image)) }}" alt="投稿画像" class="absolute top-0 left-0 w-full h-full object-cover">
+                                        </div>
+                                        @endif
+                                    </a>
                                     <div class="flex items-center mt-2 justify-end">
                                         <form action="{{ route('common_post.store', ['user_id' => 1, 'post_id' => $post->id,]) }}" method="POST" style="display:inline;">
                                             @csrf
@@ -137,7 +146,6 @@
                                         </form>
                                         @endif
                                         @endauth
-
                                     </div>
                                 </div>
                             </div>
