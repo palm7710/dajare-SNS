@@ -59,10 +59,33 @@
                                                 <span class="ml-1 text-black font-light">{{ \App\Models\Like::countByPostIdDajare($post->id) }}</span>
                                             </button>
                                         </form>
-                                        <a href="{{ url('dajare_post/' . $post->id) }}" class="text-custom-gray hover:text-deep-purple mr-4 hover-fade">
+                                        <!-- コメントボタン -->
+                                        <a href="#" class="openCommentModalBtn text-custom-gray hover:text-deep-purple mr-4 hover-fade">
                                             <i class="fas fa-comment-alt"></i>
                                             <span class="ml-1 text-black font-light">0</span>
                                         </a>
+
+                                        <!-- コメントの作成フォーム -->
+                                        <div class="commentModalOverlay modal-overlay hidden"></div>
+
+                                        <div class="commentModal modal flex justify-center mb-8 hidden">
+                                            <div class="w-[300px] sm:w-[500px] p-4 rounded border border-deep-purple shadow-lg">
+                                                <h2 class="text-center text-deep-purple text-xl sm:text-2xl mb-4">コメント</h2>
+                                                <form action="{{ route('dajare_comment.store', ['post_id' => $post->id, 'text' => old('text')]) }}" method="POST">
+                                                    @csrf
+                                                    <input type="hidden" name="post_id" value="{{ $post->id }}">
+                                                    <div class="flex mb-4 justify-center">
+                                                        <textarea id="text" name="text" class="mt-1 block border border-deep-purple rounded h-32 w-full sm:w-[85%]" required placeholder="コメントを入力してください"></textarea>
+                                                    </div>
+                                                    <div class="preview relative flex justify-center sm:justify-start mb-4 sm:ml-10"></div>
+                                                    <div class="flex flex-col sm:flex-row justify-center sm:m-8 gap-4 sm:gap-6">
+                                                        <button type="submit" class="w-full sm:w-24 bg-deep-purple text-white py-2 rounded hover:bg-deep-purple-dark hover-fade">投稿する</button>
+                                                        <button type="button" class="closeCommentModalBtn w-full sm:w-24 border border-deep-purple text-deep-purple py-2 rounded hover:bg-deep-purple-light hover-fade">キャンセル</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+
                                         @auth
                                         @if (Auth::user()->id === $post->user_id)
                                         <form action="{{ url('dajare_post/' . $post->id) }}" method="POST" style="display:inline;">
@@ -134,10 +157,34 @@
                                                 <span class="ml-1 text-black font-light">{{ \App\Models\Like::countByPostId($post->id) }}</span>
                                             </button>
                                         </form>
-                                        <a href="{{ url('common_post/' . $post->id) }}" class="text-custom-gray hover:text-deep-purple mr-4 hover-fade">
+                                        <!-- コメントボタン -->
+                                        <a href="#" class="openCommentModalBtn text-custom-gray hover:text-deep-purple mr-4 hover-fade">
                                             <i class="fas fa-comment-alt"></i>
                                             <span class="ml-1 text-black font-light">0</span>
                                         </a>
+
+                                        <!-- コメントの作成フォーム -->
+                                        <div class="commentModalOverlay modal-overlay hidden"></div>
+
+                                        <div class="commentModal modal flex justify-center mb-8 hidden">
+                                            <div class="w-[300px] sm:w-[500px] p-4 rounded border border-deep-purple shadow-lg">
+                                                <h2 class="text-center text-deep-purple text-xl sm:text-2xl mb-4">コメント</h2>
+                                                <form action="{{ route('common_comment.store', ['post_id' => $post->id, 'text' => old('text')]) }}" method="POST">
+                                                    @csrf
+                                                    <input type="hidden" name="post_id" value="{{ $post->id }}">
+                                                    <div class="flex mb-4 justify-center">
+                                                        <textarea id="text" name="text" class="mt-1 block border border-deep-purple rounded h-32 w-full sm:w-[85%]" required placeholder="コメントを入力してください"></textarea>
+                                                    </div>
+                                                    <div class="flex mb-4 sm:ml-10 justify-start text-2xl sm:text-3xl text-deep-purple">
+                                                    <div class="preview relative flex justify-center sm:justify-start mb-4 sm:ml-10"></div>
+                                                    <div class="flex flex-col sm:flex-row justify-center sm:m-8 gap-4 sm:gap-6">
+                                                        <button type="submit" class="w-full sm:w-24 bg-deep-purple text-white py-2 rounded hover:bg-deep-purple-dark hover-fade">投稿する</button>
+                                                        <button type="button" class="closeCommentModalBtn w-full sm:w-24 border border-deep-purple text-deep-purple py-2 rounded hover:bg-deep-purple-light hover-fade">キャンセル</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+
                                         @auth
                                         @if (Auth::user()->id === $post->user_id)
                                         <form action="{{ url('common_post/' . $post->id) }}" method="POST" style="display:inline;">
@@ -168,4 +215,5 @@
         @endif
     </div>
 </div>
+<script src="{{ asset('js/comment/app.js') }}"></script>
 @endsection

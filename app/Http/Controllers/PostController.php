@@ -4,12 +4,27 @@ namespace App\Http\Controllers;
 
 use App\Models\CommonPost;
 use App\Models\DajarePost;
+use App\Models\CommonPost;
+use Illuminate\Http\Request;
+use App\Models\Comment;
 use App\Models\CheckDajare;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+
 class PostController extends Controller
 {
+    public function show($id)
+    {
+        $post = CommonPost::with('comments.user')->find($id);
+
+        if (!$post) {
+            $post = DajarePost::with('comments.user')->findOrFail($id);
+        }
+
+        return view('posts.show', compact('post'));
+    }
+
     public function create()
     {
         return view('posts.create');
