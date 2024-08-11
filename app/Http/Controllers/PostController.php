@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\SendCommonPost;
-use App\Models\SendDajarePost;
+use App\Models\CommonPost;
+use App\Models\DajarePost;
 use App\Models\CheckDajare;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -45,7 +45,7 @@ class PostController extends Controller
 
         if ($dajareScore === -1) {
             //ダジャレではないので通常ポストへ
-            $post = new SendCommonPost();
+            $post = new CommonPost();
 
             //ユーザーIDを仮で１に設定。後で治す。
             $post->user_id = 1;
@@ -55,7 +55,7 @@ class PostController extends Controller
             $post->save(); // データベースに保存
         } else {
             //ダジャレなのでダジャレポストへ
-            $post = new SendDajarePost();
+            $post = new DajarePost();
 
             //ユーザーIDを仮で１に設定。後で治す。
             $post->user_id = 1;
