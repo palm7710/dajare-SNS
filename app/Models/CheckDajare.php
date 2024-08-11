@@ -11,8 +11,9 @@ class CheckDajare extends Model
         //ここにロジックを記述
         return 5;
     }
-    //小さいっ、とかを消去するサポート関数(使用予定)
+    //'っ'と'-'を消去するサポート関数(使用予定)
     private function deleteSmallChar($S){
-
+        $S = str_replace(['っ', '-'], '', $S);
+        return $S;
     }
 }
