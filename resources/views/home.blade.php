@@ -63,7 +63,7 @@
                                         <div class="commentModal modal flex justify-center mb-8 hidden">
                                             <div class="w-[300px] sm:w-[500px] p-4 rounded border border-deep-purple shadow-lg">
                                                 <h2 class="text-center text-deep-purple text-xl sm:text-2xl mb-4">コメント</h2>
-                                                <form action="{{ url('comments.store') }}" method="POST">
+                                                <form action="{{ route('dajare_comment.store', ['post_id' => $post->id, 'text' => old('text')]) }}" method="POST">
                                                     @csrf
                                                     <input type="hidden" name="post_id" value="{{ $post->id }}">
                                                     <div class="flex mb-4 justify-center">
@@ -163,7 +163,7 @@
                                         <div class="commentModal modal flex justify-center mb-8 hidden">
                                             <div class="w-[300px] sm:w-[500px] p-4 rounded border border-deep-purple shadow-lg">
                                                 <h2 class="text-center text-deep-purple text-xl sm:text-2xl mb-4">コメント</h2>
-                                                <form action="{{ url('comments.store') }}" method="POST">
+                                                <form action="{{ route('common_comment.store', ['post_id' => $post->id, 'text' => old('text')]) }}" method="POST">
                                                     @csrf
                                                     <input type="hidden" name="post_id" value="{{ $post->id }}">
                                                     <div class="flex mb-4 justify-center">
