@@ -3,7 +3,7 @@
         'name' => 'laravel/laravel',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => 'f5531076e5a80becf263a3308f216db37fb12125',
+        'reference' => 'd79f97689e7392343d4ec98e6022dec2ad7d42fe',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -391,7 +391,7 @@
         'laravel/laravel' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => 'f5531076e5a80becf263a3308f216db37fb12125',
+            'reference' => 'd79f97689e7392343d4ec98e6022dec2ad7d42fe',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -811,6 +811,15 @@
             'install_path' => __DIR__ . '/../ramsey/uuid',
             'aliases' => array(),
             'dev_requirement' => false,
+        ),
+        'revolution/laravel-vercel-installer' => array(
+            'pretty_version' => '1.2.2',
+            'version' => '1.2.2.0',
+            'reference' => 'fdb821bdf19d3f9a5fc84d67444e6734f8d9f6ff',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../revolution/laravel-vercel-installer',
+            'aliases' => array(),
+            'dev_requirement' => true,
         ),
         'rhumsaa/uuid' => array(
             'dev_requirement' => false,
