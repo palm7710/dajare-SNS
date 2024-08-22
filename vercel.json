@@ -3,26 +3,14 @@
     "builds": [
         {
             "src": "/api/index.php",
-            "use": "vercel-php@0.7.1"
+            "use": "vercel-php@0.5.2"
         },
         {
             "src": "/public/**",
-            "use": "vercel-php@0.7.1"
+            "use": "vercel-php@0.5.2"
         }
     ],
     "routes": [
-        {
-            "src": "/(.*)",
-            "dest": "/api/index.php"
-        },
-        {
-            "src": "/favicon.ico",
-            "dest": "/public/favicon.ico"
-        },
-        {
-            "src": "/robots.txt",
-            "dest": "/public/robots.txt"
-        },
         {
             "src": "/(.*)",
             "dest": "/api/index.php"
