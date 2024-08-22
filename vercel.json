@@ -28,9 +28,11 @@
         }
     ],
     "env": {
-        "APP_NAME": "personalBlog",
-        "APP_ENV": "production", 
-        "APP_DEBUG": "true", 
+        "APP_NAME": "Jokey",
+        "APP_DEBUG": "true",
+        "DB_CONNECTION": "mysql",
+        "DB_HOST": "",
+        "DB_PORT": "", 
         "APP_CONFIG_CACHE": "/tmp/config.php", 
         "APP_EVENTS_CACHE": "/tmp/events.php", 
         "APP_PACKAGES_CACHE": "/tmp/packages.php", 
