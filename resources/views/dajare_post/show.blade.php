@@ -11,7 +11,7 @@
                     <!-- プロフィール画像 -->
                     <div class="w-14 h-14 rounded-full mr-4">
                         <a href="{{ route('users.show', $post->user->id) }}">
-                            <img src="{{ asset($post->user->profile_image) }}" alt="Profile Image">
+                            <img src="{{ asset('profile/' . $post->user->profile_image) }}" alt="Profile Image">
                         </a>
                     </div>
                     <div class="flex-1">
