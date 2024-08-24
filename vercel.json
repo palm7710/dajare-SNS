@@ -32,7 +32,7 @@
         "APP_DEBUG": "true",
         "DB_CONNECTION": "mysql",
         "DB_HOST": "",
-        "DB_PORT": "", 
+        "DB_PORT": "3306", 
         "APP_CONFIG_CACHE": "/tmp/config.php", 
         "APP_EVENTS_CACHE": "/tmp/events.php", 
         "APP_PACKAGES_CACHE": "/tmp/packages.php", 
