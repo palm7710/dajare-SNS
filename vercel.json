@@ -35,6 +35,14 @@
             "dest": "/public/images/$1"
         },
         {
+            "src": "/post/(.*)",
+            "dest": "/public/post/$1"
+        },
+        {
+            "src": "/profile/(.*)",
+            "dest": "/public/profile/$1"
+        },
+        {
             "src": "/(.*)",
             "dest": "/api/index.php" 
         }
