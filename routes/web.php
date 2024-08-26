@@ -68,4 +68,13 @@ Route::middleware('auth')->group(function () {
 Route::post('/common_post/{post_id}/comments', [CommonCommentController::class, 'store'])->name('common_comment.store');
 Route::post('/dajare_post/{post_id}/comments', [DajareCommentController::class, 'store'])->name('dajare_comment.store');
 
+Route::get('/db-test', function () {
+    try {
+        DB::connection()->getPdo();
+        return 'Database connection is working!';
+    } catch (\Exception $e) {
+        return 'Could not connect to the database. Error: ' . $e->getMessage();
+    }
+});
+
 require __DIR__ . '/auth.php';
