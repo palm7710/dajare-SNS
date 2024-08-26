@@ -68,4 +68,13 @@ Route::middleware('auth')->group(function () {
 Route::post('/common_post/{post_id}/comments', [CommonCommentController::class, 'store'])->name('common_comment.store');
 Route::post('/dajare_post/{post_id}/comments', [DajareCommentController::class, 'store'])->name('dajare_comment.store');
 
+Route::get('/db-query', function () {
+    try {
+        $users = DB::table('users')->get();
+        return response()->json($users);
+    } catch (\Exception $e) {
+        return 'Could not run query. Error: ' . $e->getMessage();
+    }
+});
+
 require __DIR__ . '/auth.php';
