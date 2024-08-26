@@ -23,6 +23,8 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Carbon::setLocale('ja');
-        DB::statement('SET search_path TO public');
+        if (DB::connection()->getDriverName() === 'pgsql') {
+            DB::statement('SET search_path TO public');
+        }
     }
 }
