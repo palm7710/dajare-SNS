@@ -8,7 +8,7 @@
     <title>@yield('title')</title>
 
     <!-- CSS -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="//jokey-three.vercel.app/css/app.css" rel="stylesheet">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -51,7 +51,7 @@
     </main>
 
     <!-- js -->
-    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="//jokey-three.vercel.app/js/app.js"></script>
 </body>
 
 </html>
