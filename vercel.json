@@ -27,6 +27,14 @@
             "dest": "/public/css/$1"
         },
         {
+            "src": "/js/comment/(.*)",
+            "dest": "/public/js/comment/$1"
+        },
+        {
+            "src": "/js/user/(.*)",
+            "dest": "/public/js/user/$1"
+        },
+        {
             "src": "/js/(.*)",
             "dest": "/public/js/$1"
         },
