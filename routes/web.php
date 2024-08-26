@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\DB;
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
@@ -68,12 +70,12 @@ Route::middleware('auth')->group(function () {
 Route::post('/common_post/{post_id}/comments', [CommonCommentController::class, 'store'])->name('common_comment.store');
 Route::post('/dajare_post/{post_id}/comments', [DajareCommentController::class, 'store'])->name('dajare_comment.store');
 
-Route::get('/db-test', function () {
+Route::get('/db-query', function () {
     try {
-        DB::connection()->getPdo();
-        return 'Database connection is working!';
+        $users = DB::table('users')->get();
+        return response()->json($users);
     } catch (\Exception $e) {
-        return 'Could not connect to the database. Error: ' . $e->getMessage();
+        return 'Could not run query. Error: ' . $e->getMessage();
     }
 });
 
