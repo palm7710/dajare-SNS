@@ -64,7 +64,7 @@
                                         </div>
                                         <div class="preview relative flex justify-center sm:justify-start mb-4 sm:ml-10"></div>
                                         <div class="flex flex-col sm:flex-row justify-center sm:m-8 gap-4 sm:gap-6">
-                                            <button type="submit" class="w-full sm:w-24 bg-deep-purple text-white py-2 rounded hover:bg-deep-purple-dark hover-fade">投稿する</button>
+                                            <button type="submit" class="w-full sm:w-24 bg-deep-purple text-white py-2 rounded hover:bg-deep-purple-dark hover-fade">コメントする</button>
                                             <button type="button" class="closeCommentModalBtn w-full sm:w-24 border border-deep-purple text-deep-purple py-2 rounded hover:bg-deep-purple-light hover-fade">キャンセル</button>
                                         </div>
                                     </form>
