@@ -116,5 +116,5 @@
         </div>
     </div>
 </div>
-<script src="//jokey-three.vercel.app/js/comment.js"></script>
+<script src="https://jokey-three.vercel.app/js/comment/app.js"></script>
 @endsection
