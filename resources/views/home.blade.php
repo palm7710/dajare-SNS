@@ -215,5 +215,5 @@
         @endif
     </div>
 </div>
-<script src="{{ asset('js/comment/app.js') }}"></script>
+<script src="/js/comment/app.js"></script>
 @endsection
